@@ -10,6 +10,10 @@ public class TicketServer implements TicketService {
     private int MAX_CAPACITY = 100;
     private int TEMP_COUNT = MAX_CAPACITY;
 
+     /*
+     We are using a 2d array to represent the theater seating chart and
+     a synchronized hashMap to store the mapping of seatHoldId to seats
+     */
 
     private static int[][] CHART = new int[10][10];
     Map seatHoldIdIndex = Collections.synchronizedMap(new HashMap<Integer, SeatHold>());
@@ -17,15 +21,16 @@ public class TicketServer implements TicketService {
 
     private static synchronized int[][] seatChartMutator(String command, int seatCount, int[][] seats) {
 
-        // ADD LOGIC
+        /* ADD LOGIC
+        To achieve a logical trade-of between theater utilization and best seat; the approach used is to iterate from top all the way till the last row
+        while allocating the first possible seat to the seat requester. This solves two purposes,
+        1. Theater utilization is maximized
+        2. Customer satisfaction is increased by providing them with the farthest possible row from the screen.
+        */
         if (command.equals("add")) {
             int[][] bookedSeats = new int[seatCount][2];
 
             int index= 0;
-
-
-
-
             for (int row = 0; row < 10; row++) {
                 int[] seatingRow = CHART[row];
 
@@ -44,9 +49,6 @@ public class TicketServer implements TicketService {
                     }
                 }
             }
-
-            System.out.println("returning reserved seats array");
-
 
         } else if (command.equals("remove")) {
 
@@ -73,8 +75,6 @@ public class TicketServer implements TicketService {
             TEMP_COUNT -= numSeats;
 
             int seatsOnHold[][] = seatChartMutator("add", numSeats, null);
-
-
 
             final SeatHold booking = new SeatHold(numSeats, customerEmail, seatsOnHold);
             seatHoldIdIndex.put(booking.getSeatHoldId(), booking);
