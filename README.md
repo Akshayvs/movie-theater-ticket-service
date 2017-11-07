@@ -28,6 +28,10 @@ The service provides the following functionality
 
 4. navigate to the project root and execute the following
 
+ ```  mvn clean install  ```
+
+ This install all the project dependencies
+
  ```  mvn package  ```
 
 you should see something like :
