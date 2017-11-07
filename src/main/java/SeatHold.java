@@ -14,7 +14,6 @@ public class SeatHold {
 
     public SeatHold(int numberOfSeats, String customerEmail, int[][] seatsOnHold) {
         this.seatHoldId = new Random().nextInt(100);
-
         this.numberOfSeats = numberOfSeats;
         this.customerEmail = customerEmail;
         this.reservedSeats = seatsOnHold;

@@ -11,7 +11,6 @@ public class App {
     public static void main(String args[]) {
         displayInstructions();
         navigation();
-
     }
 
     private static void displayInstructions() {
@@ -21,12 +20,6 @@ public class App {
         System.out.println(" [ 2 ] for reserve seats");
         System.out.println(" [ 3 ] for book seats");
         System.out.println(" To Exit, press any other key");
-    }
-
-
-    private static void invalidResponseHandler() {
-
-
     }
 
     private static void navigation() {
