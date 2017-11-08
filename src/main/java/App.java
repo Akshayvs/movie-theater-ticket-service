@@ -13,7 +13,7 @@ public class App {
         navigation();
     }
 
-    private static void displayInstructions() {
+    protected static void displayInstructions() {
         System.out.println();
         System.out.println(" Please provide a numeric input to perform one of the actions");
         System.out.println(" [ 1 ] for remaining seats");
@@ -22,7 +22,7 @@ public class App {
         System.out.println(" To Exit, press any other key");
     }
 
-    private static void navigation() {
+    protected static void navigation() {
         TicketService server = new TicketServer();
         Scanner scr = new Scanner(System.in);
 
