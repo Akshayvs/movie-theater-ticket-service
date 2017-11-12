@@ -2,12 +2,16 @@
 
 Java 8.0 and Maven 3.5.2 based project to simulate the working of a movie theater reservation system.
 
+Maven (for those who dont know) is a dependency management and build automation tool for Java applications.
+Good Read: http://www.baeldung.com/ant-maven-gradle
+
+
 The service provides the following functionality
-1. Find the number of seats available within the venue
+1. Find the number of seats available within the venue.
     Note: available seats are seats that are neither held nor reserved.
-2. Find and hold the best available seats on behalf of a customer
+2. Find and hold the best available seats on behalf of a customer.
     Note: each ticket hold should expire within a set number of seconds.
-3. Reserve and commit a specific group of held seats for a customer
+3. Reserve and commit a specific group of held seats for a customer.
 
 
 
@@ -60,3 +64,13 @@ you should see something like :
  To Exit, press any other key
 ```
 You have the app running !!!
+
+
+
+
+### TESTING :-
+
+The following testing frameworks have been used :
+jUnit : testing Framework
+Mockito : For mocking dependencies
+AssertJ : Assertion Library

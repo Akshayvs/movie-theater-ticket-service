@@ -13,15 +13,10 @@ public class TicketServer implements TicketService {
      and
      a synchronized hashMap to store the mapping of seatHoldId to seats
      */
-
+     // Syschrnoized Data Stores
     private Seats seats = new Seats();
     private Map unconfirmedBookings = Collections.synchronizedMap(new HashMap<Integer, SeatHold>());
-
-
-    private static int[][] CHART = new int[10][10];
-
-
-
+    private static boolean [][] CHART = new boolean[10][10];
 
     private static synchronized int[][] seatChartMutator(String command, int seatCount, int[][] seats) {
 
@@ -36,88 +31,65 @@ public class TicketServer implements TicketService {
 
             int index= 0;
             for (int row = 0; row < 10; row++) {
-                int[] seatingRow = CHART[row];
 
                 for (int column = 0; column < 10; column++) {
-                    if (seatingRow[column] == 0) {
+                    if (CHART[row][column] == false) {
+                        CHART[row][column] = true;
 
-                        seatingRow[column] = 1;
-                        int [] resArr = {row, column};
+                        int [] seatLocation = {row, column};
 
-                        bookedSeats[index] = resArr;
+                        bookedSeats[index] = seatLocation;
                         index++;
-                        System.out.println("incr = " +index);
-                        if (index == seatCount-1){
+                        if (index == seatCount){
                             return bookedSeats;
                         }
                     }
                 }
             }
-
         } else if (command.equals("remove")) {
-
-            System.out.println("Remove Detected ");
             for (int[] seat : seats) {
                 int row = seat[0];
                 int column = seat[1];
 
-                CHART[row][column] = 0;
-
+                CHART[row][column] = false;
             }
             return null;
         }
         return null;
     }
 
-
     public int totalAvailableSeats() {
         return seats.getSeatCount();
     }
 
     public SeatHold findAndHoldSeats(int totalSeatsRequested, String customerEmail) {
-
         if (seats.getSeatCount() - totalSeatsRequested >= 0) {
+            // update totalSeats counter, update the seatChart, create a booking Object and map it in the unconfirmedBookings map`
 
             seats.setSeatCount(-totalSeatsRequested);
-
             int seatsOnHold[][] = seatChartMutator("add", totalSeatsRequested, null);
-
             final SeatHold booking = new SeatHold(totalSeatsRequested, customerEmail, seatsOnHold);
             unconfirmedBookings.put(booking.getSeatHoldId(), booking);
+
 
             // TIMEOUT !!
             ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
             exec.schedule(new Runnable() {
-
                 public void run() {
                     /*
-                    Delete entry from hashtable
-                    Update the count,
-                    update the 2d array
+                    Delete entry from unconfirmedBookings map, Update the count, update the 2d seatChart array
                     */
-                    System.out.println(" Checking if reservation is confirmed for : " + booking.getSeatHoldId());
-
                     if (unconfirmedBookings.containsKey(booking.getSeatHoldId())) {
-
                         seats.setSeatCount(booking.getNumberOfSeats());
                         unconfirmedBookings.remove(booking.getSeatHoldId());
-
-
                         seatChartMutator("remove", 0, booking.getSeatsOnHold());
-
-                        System.out.println("Booking not confirmed, deleting entry");
-
-                    } else {
-                        System.out.println(" Booking was confirmed for : " + booking.getSeatHoldId());
                     }
                 }
             }, 15, TimeUnit.SECONDS);
             return booking;
         } else {
-            // error response passing logic to provide a count on actual remaining seats.
-
-            
-            return new SeatHold(-AVAILABLE_SEATS_COUNTER, customerEmail, null);
+            // error response passing logic to provide a negated count of the actual remaining seats.
+            return new SeatHold(-seats.getSeatCount(), customerEmail, null);
         }
     }
 
