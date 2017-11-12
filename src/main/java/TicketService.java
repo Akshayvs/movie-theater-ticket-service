@@ -2,7 +2,7 @@
  * Created by asonawane on 11/4/17.
  */
 public interface TicketService {
-    int numSeatvailable();
+    int totalAvailableSeats();
 
     SeatHold findAndHoldSeats( int numSeats, String customerEmail);
 
