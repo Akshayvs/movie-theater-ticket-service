@@ -2,7 +2,6 @@
  * Created by asonawane on 11/4/17.
  */
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class SeatHold {
@@ -13,7 +12,7 @@ public class SeatHold {
     private int[][] reservedSeats;
 
     public SeatHold(int numberOfSeats, String customerEmail, int[][] seatsOnHold) {
-        this.seatHoldId = new Random().nextInt(100);
+        this.seatHoldId = new Random().nextInt(1000);
         this.numberOfSeats = numberOfSeats;
         this.customerEmail = customerEmail;
         this.reservedSeats = seatsOnHold;

@@ -4,7 +4,7 @@
 public interface TicketService {
     int totalAvailableSeats();
 
-    SeatHold findAndHoldSeats( int numSeats, String customerEmail);
+    SeatHold findAndHoldSeats(int numSeats, String customerEmail);
 
     String reserveSeats(int seatHoldId, String customerEmail);
 }

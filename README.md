@@ -22,26 +22,22 @@ Good Read: http://www.baeldung.com/ant-maven-gradle
 1. git pull the project on your local host.
 
 2. IF you dont have JAVA and Maven installed, install them using Homebrew :  https://brew.sh/
-
     ``` brew cask install java8 ```
-
     ``` brew install maven  ```
 
-3. Verify their installation
-
-    ``` java -version```
-
-    ```maven -version ```
+3. Verify their installation :
+    ` java -version`
+    `maven -version `
 
 4. navigate to the project root and execute the following
+    `  mvn clean install  `
 
-    ```  mvn clean install  ```
+    This will  install all the project dependencies.
+    You will see a `target` folder in your project root
 
- This install all the project dependencies
+5.   `  mvn package  `
 
-    ```  mvn package  ```
-
-you should see something like :
+    you should see something like :
 
 ```
 [INFO] ------------------------------------------------------------------------
@@ -53,7 +49,8 @@ you should see something like :
 [INFO] ------------------------------------------------------------------------
 ```
 
-Then type the following :
+
+    Then type the following :
 
     ```  java -cp target/movie-theater-ticket-service-1.0-SNAPSHOT.jar App  ```
 
@@ -77,3 +74,7 @@ The following testing frameworks have been used :
 jUnit : testing Framework
 Mockito : For mocking dependencies
 AssertJ : Assertion Library
+
+Run the test suite using  :  ` mvn test  `
+
+ Check Code Coverage at :   ` ./target/site/index.html`
