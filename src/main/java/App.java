@@ -38,6 +38,7 @@ public class App {
                     //HOLD SEATS
                     int requestedSeats;
                     int seatCount;
+                    int[][] seats;
                     String clientEmail;
 
 
@@ -56,8 +57,7 @@ public class App {
 
                     if (seatCount > 0) {
                         System.out.println("Following " + seatCount + "seats have been reserved : ");
-
-                        int[][] seats = reservation.getSeatsOnHold();
+                        seats = reservation.getSeatsOnHold();
 
                         for (int[] seat : seats) {
                             System.out.print(Arrays.toString(seat));

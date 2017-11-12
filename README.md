@@ -1,17 +1,20 @@
-# movie-theater-ticket-service
+# Movie-Theater-Ticket-Service
 
 Java 8.0 and Maven 3.5.2 based project to simulate the working of a movie theater reservation system.
 
-Maven (for those who dont know) is a dependency management and build automation tool for Java applications.
-Good Read: http://www.baeldung.com/ant-maven-gradle
 
-
-The service provides the following functionality
+The service simulates the following functionality for a 10 X 10 movie theater
 1. Find the number of seats available within the venue.
     Note: available seats are seats that are neither held nor reserved.
 2. Find and hold the best available seats on behalf of a customer.
     Note: each ticket hold should expire within a set number of seconds.
 3. Reserve and commit a specific group of held seats for a customer.
+
+The project demonstrates key Java concepts like OOP, Collection, MultiThreading, Thread safety,
+Race Conditions like 'check-then-act', 'read-modify-write' etc.
+
+Maven (for those who dont know) is a dependency management and build automation tool for Java applications.
+Good Read: http://www.baeldung.com/ant-maven-gradle
 
 
 
@@ -32,11 +35,11 @@ The service provides the following functionality
 
 4. navigate to the project root and execute the following
 
- ```  mvn clean install  ```
+    ```  mvn clean install  ```
 
  This install all the project dependencies
 
- ```  mvn package  ```
+    ```  mvn package  ```
 
 you should see something like :
 
@@ -52,7 +55,7 @@ you should see something like :
 
 Then type the following :
 
-```  java -cp target/movie-theater-ticket-service-1.0-SNAPSHOT.jar App  ```
+    ```  java -cp target/movie-theater-ticket-service-1.0-SNAPSHOT.jar App  ```
 
 you should see something like :
 
