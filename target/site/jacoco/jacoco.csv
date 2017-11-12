@@ -1,6 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-movie-theater-ticket-service,default,App,257,0,18,0,63,0,13,0,4,0
-movie-theater-ticket-service,default,SeatHold,0,31,0,0,0,10,0,5,0,5
-movie-theater-ticket-service,default,TicketServer,43,154,7,11,7,30,5,10,0,6
-movie-theater-ticket-service,default,TicketServer.new Runnable() {...},33,9,2,0,5,1,2,1,1,1
-movie-theater-ticket-service,default,Seats,0,30,0,4,0,8,0,5,0,3
