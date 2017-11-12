@@ -2,7 +2,6 @@
  * Created by asonawane on 11/4/17.
  */
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -32,11 +31,11 @@ public class App {
             if (value.equals("1")) {
                 //REMAINING SEATS
 
-                System.out.println("Reamining Seats = " + server.numSeatvailable());
+                System.out.println("Reamining Seats = " + server.totalAvailableSeats());
 
             } else if (value.equals("2")) {
                 //HOLD SEATS
-                System.out.println(" Hold seats, You can reserve upto " + server.numSeatvailable() + " seats");
+                System.out.println(" Hold seats, You can reserve upto " + server.totalAvailableSeats() + " seats");
                 System.out.println(" How many seats ? ");
                 int requestedSeats = scr.nextInt();
                 System.out.println(" What is your email ? ");
