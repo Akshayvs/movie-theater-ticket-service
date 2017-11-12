@@ -1,12 +1,13 @@
-import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static junit.framework.TestCase.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by asonawane on 11/7/17.
  */
-public class SeatHoldTest extends TestCase {
+public class SeatHoldTest {
+
 
     @Test
     public void testGetNumberOfSeats() throws Exception {
@@ -27,7 +28,7 @@ public class SeatHoldTest extends TestCase {
 
         SeatHold seat = new SeatHold(numberOfSeats, email, seatsOnHold);
 
-        assertThat(seat.getSeatHoldId()).isBetween(0,100);
+        assertThat(seat.getSeatHoldId()).isBetween(0, 1000);
     }
 
     @Test

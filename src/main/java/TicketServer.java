@@ -2,21 +2,23 @@
  * Created by asonawane on 11/4/17.
  */
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class TicketServer implements TicketService {
-     /*
-     We are using a 2d array to represent the theater seating chart
-     which is synchronized using a mutator function
-     and
-     a synchronized hashMap to store the mapping of seatHoldId to seats
-     */
-     // Syschrnoized Data Stores
+    /*
+    We are using a 2d array to represent the theater seating chart
+    which is synchronized using a mutator function
+    and
+    a synchronized hashMap to store the mapping of seatHoldId to seats
+    */
+    // Syschrnoized Data Stores
     private Seats seats = new Seats();
     private Map unconfirmedBookings = Collections.synchronizedMap(new HashMap<Integer, SeatHold>());
-    private static boolean [][] CHART = new boolean[10][10];
+    private static boolean[][] CHART = new boolean[10][10];
 
     private static synchronized int[][] seatChartMutator(String command, int seatCount, int[][] seats) {
 
@@ -29,18 +31,18 @@ public class TicketServer implements TicketService {
         if (command.equals("add")) {
             int[][] bookedSeats = new int[seatCount][2];
 
-            int index= 0;
+            int index = 0;
             for (int row = 0; row < 10; row++) {
 
                 for (int column = 0; column < 10; column++) {
                     if (CHART[row][column] == false) {
                         CHART[row][column] = true;
 
-                        int [] seatLocation = {row, column};
+                        int[] seatLocation = {row, column};
 
                         bookedSeats[index] = seatLocation;
                         index++;
-                        if (index == seatCount){
+                        if (index == seatCount) {
                             return bookedSeats;
                         }
                     }

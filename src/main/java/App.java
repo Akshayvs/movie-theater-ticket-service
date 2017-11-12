@@ -15,7 +15,7 @@ public class App {
         navigation();
     }
 
-    protected static void printDefaultInstructions() {
+    private static void printDefaultInstructions() {
         System.out.println();
         System.out.println(" Please provide a numeric input to perform one of the actions");
         System.out.println(" [ 1 ] for remaining seats");
@@ -24,7 +24,7 @@ public class App {
         System.out.println(" To Exit, press any other key");
     }
 
-    protected static void navigation() {
+    private static void navigation() {
         Scanner scr = new Scanner(System.in);
 
         try {
